@@ -231,7 +231,7 @@ nav{
     justify-content: right;
     align-content: center;
     min-height: 80vh;
-    width: 50%;
+    width: 60%;
 }
 .image{
     margin: auto 0;
@@ -308,66 +308,96 @@ h3{
     margin-bottom: 15px;
 }
 
-/* ----- ABOUT INFO ----- */
-.about-info{
-    position: relative;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-block: 30px 70px;
-    padding-inline: 20px;
-    width: 100%;
+
+/* --- ABOUT BOX --- */
+.about-info {
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    padding: 10px;
+    border-radius: 2%;
+}
+
+@keyframes fadeInUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* --- SKILLS BOX --- */
+.skills-box {
     background: var(--color-white);
-    box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
-    border-radius: 20px;
-
-
-}
-.about-info p{
-    text-align: center;
-    font-size: 15px;
-    color: #777;
-
-}
-.about-info:hover{
-    
-    background: var(--second-color);
-    /* color: var(--color-white); */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards 0.3s;
+    flex:auto;
+    margin:10px;    
 }
 
+.skills-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
 
-/* .about-btn button{
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
+.skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.skills-list span {
+    display: inline-block;
+    padding: 8px 15px;
     background: var(--first-color);
-    color: var(--color-white);
-    border-radius: 30px;
+    color: white;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
 }
-.about-btn button:hover{
-    background: var(--first-color-hover);
-} */
 
-/* ----- ABOUT / SKILLS BOX ----- */
-.skills-box{
-    margin: 10px;
-}
-.skills-header{
-    margin-bottom: 30px;
-}
-.skills-list{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-}
-.skills-list span{
-    font-size: 14px;
+.skills-list span:hover {
     background: var(--second-color);
-    color: var(--color-white);
-    padding: 2px 10px;
-    border-radius: 5px;
+    transform: scale(1.05);
 }
 
+.animated-text {
+    position: relative;
+}
+
+.animated-text p {
+    position: relative;
+    opacity: 0;
+    animation: slideIn 0.8s ease forwards;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.social_icons .icon {
+    transition: all 0.3s ease;
+}
+
+.social_icons .icon:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    color: var(--first-color);
+}
 /* ----- PROJECTS BOX ----- */
 .project-container{
     display: flex;
@@ -517,7 +547,7 @@ footer{
     padding-block: 40px 60px;
 }
 .top-footer p{
-    font-size: 25px;
+    font-size: 45px;
     font-weight: 600;
 }
 .middle-footer .footer-menu{
@@ -646,5 +676,117 @@ footer{
     }
     .input-field{
         width: 100%;
+    }
+}
+
+/* Styles pour les nouveaux boutons */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: auto; /* Pour les pousser à droite */
+    padding-right: 20px;
+}
+
+.btn-icon {
+    background: var(--first-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: var(--first-color-hover);
+    transform: scale(1.1);
+}
+
+#language-toggle {
+    width: auto;
+    padding: 0 15px;
+    border-radius: 20px;
+}
+
+/* Styles pour le mode sombre */
+body.dark-mode {
+    --body-color: #121212;
+    --color-white: #1e1e1e;
+    --text-color-second: #e0e0e0;
+    --text-color-third: #4db8ff;
+    --first-shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .featured-box,
+.dark-mode .about-info,
+.dark-mode .project-box,
+.dark-mode .contact-info,
+.dark-mode .skills-box {
+    background: #2d2d2d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode footer {
+    background: #1a1a1a;
+}
+
+/* Transition douce pour le changement de thème */
+body, .featured-box, .about-info, .project-box, .contact-info, .skills-box {
+    transition: background-color 0.5s ease, color 0.3s ease;
+}
+
+/* Adaptation des couleurs en mode sombre */
+.dark-mode {
+    color: #f0f0f0;
+}
+
+.dark-mode .skills-list span {
+    background: #3a3a3a;
+    color: #ffffff;
+}
+
+.dark-mode .input-field,
+.dark-mode textarea {
+    background: #2d2d2d;
+    border-color: #444;
+    color: #fff;
+}
+
+.dark-mode .btn {
+    background: #3a3a3a;
+    color: #fff;
+}
+
+.introduction-title, .introduction-text {
+    transition: all 0.3s ease;
+}
+
+/* Pour éviter les sauts de layout avec des textes de longueurs différentes */
+.about-info {
+    min-height: 300px; /* Ajuste selon tes besoins */
+}
+
+.featured-name {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.iam-prefix {
+    margin-right: 5px;
+    font-size: 50px; /* Même taille que le texte animé */
+    font-weight: 600;
+    color: var(--text-color-second);
+}
+
+/* Pour le mode responsive */
+@media (max-width: 768px) {
+    .iam-prefix, .typedText {
+        font-size: 40px;
     }
 }
