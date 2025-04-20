@@ -111,33 +111,36 @@ function scrollActive() {
   })
 }
 
-/* ----- FORM SUBMISSION ----- */
-const form = document.querySelector('form');
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  const formData = new FormData(form);
-
-  fetch('https://formspree.io/f/xanepdbv', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-  })
-  .then(response => {
-      if (response.ok) {
-          alert("✅ Message envoyé avec succès !");
-          form.reset();
-      } else {
-          alert("Erreur lors de l'envoi du message.");
-      }
-  })
-  .catch(error => {
-      alert("⚠️ Une erreur réseau est survenue.");
-      console.error("Erreur :", error);
+(function() {
+    emailjs.init("4qu47QY5_b2OE2wnP"); // Remplacez par votre User ID
+  })();
+  
+  document.getElementById('contact-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const btn = event.target.querySelector('button');
+    const originalBtnText = btn.innerHTML;
+    
+    // Mise à jour du bouton pendant l'envoi
+    btn.disabled = true;
+    btn.innerHTML = 'Sending... <i class="uil uil-spinner uil-spin"></i>';
+    
+    // Envoi du formulaire via EmailJS
+    emailjs.sendForm('service_zjmur15', 'template_r46bssp', this)
+      .then(function() {
+        // Redirection vers la page de remerciement après succès
+        window.location.href = "merci.html";
+      }, function(error) {
+        // Affichage d'une alerte en cas d'erreur
+        alert('Erreur lors de l\'envoi du message: ' + error.text);
+      })
+      .finally(function() {
+        // Réinitialisation du bouton
+        btn.disabled = false;
+        btn.innerHTML = originalBtnText;
+      });
   });
-});
-
 /* ----- TRANSLATION SYSTEM ----- */
 const translations = {
   fr: {
@@ -288,4 +291,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialiser la langue
   applyLanguage(currentLanguage);
   window.addEventListener('scroll', scrollActive);
+});
+
+// Vérifier le thème au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    // Récupérer le thème depuis le localStorage
+    const savedTheme = localStorage.getItem('theme');
+    
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Animation pour le conteneur
+    setTimeout(() => {
+        document.querySelector('.thank-you-container').style.opacity = '1';
+        document.querySelector('.thank-you-container').style.transform = 'translateY(0)';
+    }, 100);
 });

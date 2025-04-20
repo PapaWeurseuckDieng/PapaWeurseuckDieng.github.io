@@ -150,12 +150,12 @@
             <div class="project-box">
                 <i class="uil uil-briefcase-alt"></i>
                 <h3>Completed</h3>
-                <label>5+ Finished Projects</label>
+                <label>3+ Finished Projects</label>
             </div>
             <div class="project-box">
                 <i class="uil uil-users-alt"></i>
                 <h3>Clients</h3>
-                <label>5+ Happy Clients</label>
+                <label>3+ Happy Clients</label>
             </div>
             <div class="project-box">
                 <i class="uil uil-award"></i>
@@ -182,12 +182,12 @@
              </div>
              <div class="col">
                <div class="form-control">
-                <form method="POST" action="https://formspree.io/f/xanepdbv">
+                <form id="contact-form" >
                     <!-- Redirection après soumission -->
                     <input type="hidden" name="_redirect" value="merci.html">
                   
                     <div class="form-inputs">
-                      <input type="text" name="nom" class="input-field" placeholder="Name" required>
+                      <input type="text" name="name" class="input-field" placeholder="Name" required>
                       <input type="email" name="email" class="input-field" placeholder="Email" required>
                     </div><br>
                   
@@ -242,6 +242,8 @@
 
     <!-- ----- TYPING JS Link ----- -->
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
        <!-- ----- SCROLL REVEAL JS Link----- -->
     <script src="https://unpkg.com/scrollreveal"></script>
