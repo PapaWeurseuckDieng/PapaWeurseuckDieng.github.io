@@ -127,7 +127,7 @@ function scrollActive() {
     btn.innerHTML = 'Sending... <i class="uil uil-spinner uil-spin"></i>';
     
     // Envoi du formulaire via EmailJS
-    emailjs.sendForm('service_zjmur15', 'template_r46bssp', this)
+    emailjs.sendForm('service_zjmur15', 'template_8h10j2e', this)
       .then(function() {
         // Redirection vers la page de remerciement après succès
         window.location.href = "merci.html";
